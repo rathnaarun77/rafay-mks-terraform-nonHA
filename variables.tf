@@ -47,9 +47,9 @@ variable "image_id" {
   
 }
 
-variable "ssh_public_key_path" {
-    description = "ssh public key for login"
-  
+variable "ssh_public_key" {
+  description = "SSH public key"
+  type        = string
 }
 
 variable "prefix_name" {
