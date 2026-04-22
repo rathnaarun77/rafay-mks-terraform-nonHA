@@ -16,7 +16,6 @@ terraform {
 }
 
 provider "rafay" {
-  provider_config_file = var.provider_config_file
 }
 
 provider "oci" {
