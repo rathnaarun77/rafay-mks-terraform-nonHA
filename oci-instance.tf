@@ -29,7 +29,7 @@ resource "oci_core_instance" "node1" {
   }
 
   metadata = {
-    ssh_authorized_keys = file(var.ssh_public_key_path)
+    ssh_authorized_keys = trimspace(var.ssh_public_key)
 
     user_data = base64encode(<<EOF
 #!/bin/bash
