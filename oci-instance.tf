@@ -1,3 +1,11 @@
+data "oci_core_images" "ubuntu" {
+  compartment_id           = var.compartment_ocid
+  operating_system         = "Canonical Ubuntu"
+  operating_system_version = "24.04"
+
+  sort_by    = "TIMECREATED"
+  sort_order = "DESC"
+}
 resource "oci_core_instance" "node1" {
   availability_domain = var.availability_domain
   compartment_id      = var.compartment_id
@@ -17,7 +25,7 @@ resource "oci_core_instance" "node1" {
 
   source_details {
     source_type = "image"
-    source_id   = var.image_id
+    source_id   = data.oci_core_images.ubuntu.images[0].id
   }
 
   metadata = {
