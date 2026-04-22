@@ -49,7 +49,6 @@ variable "image_id" {
 
 variable "ssh_public_key_path" {
     description = "ssh public key for login"
-    default = "/Users/arun/.ssh/id_rsa.pub"
   
 }
 
