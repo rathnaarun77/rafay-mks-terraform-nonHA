@@ -23,10 +23,10 @@ variable "region" {
   type        = string
 }
 
-variable "provider_config_file" {
-  description = "Path to Rafay provider config file"
-  type        = string
-}
+# variable "provider_config_file" {
+# description = "Path to Rafay provider config file"
+#   type        = string
+# }
 
 variable "availability_domain" {
     description = "oci instance availability zone"
