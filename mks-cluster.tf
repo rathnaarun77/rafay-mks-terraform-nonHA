@@ -1,3 +1,8 @@
+resource "local_file" "ssh_key" {
+  content  = var.private_key
+  filename = "${path.module}/temp_key.pem"
+}
+
 resource "rafay_mks_cluster" "mks-cluster" {
   api_version = "infra.k8smgmt.io/v3"
   kind        = "Cluster"
@@ -25,7 +30,7 @@ resource "rafay_mks_cluster" "mks-cluster" {
       cluster_ssh = {
         username         = "ubuntu"
         port             = "22"
-        private_key_path = var.priv_key
+        private_key_path = local_file.ssh_key.filename
       }
       nodes = {
         (oci_core_instance.node1.display_name) = {
