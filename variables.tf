@@ -116,3 +116,8 @@ variable "operating_system" {
     default = "Ubuntu24.04"
   
 }
+variable "private_key" {
+  description = "Private SSH key content"
+  type        = string
+  sensitive   = true
+}
