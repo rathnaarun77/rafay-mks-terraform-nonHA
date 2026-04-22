@@ -110,9 +110,6 @@ variable "service_subnet" {
   default     = "10.96.0.0/12"
 }
 
-variable "priv_key" {
-    description = "path to private key for ssh to oci instance created"
-}
 
 variable "operating_system" {
     description = "operating system for the node instance"
