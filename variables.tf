@@ -112,7 +112,6 @@ variable "service_subnet" {
 
 variable "priv_key" {
     description = "path to private key for ssh to oci instance created"
-    default = "/Users/arun/.ssh/id_rsa"
 }
 
 variable "operating_system" {
