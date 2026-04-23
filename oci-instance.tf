@@ -49,8 +49,5 @@ apt remove -yq iptables-persistent --purge || true
 iptables -F
 EOF
     )
-  }
-  lifecycle {
-    ignore_changes = [source_details[0].boot_volume_size_in_gbs]
-  }
+}
 }
