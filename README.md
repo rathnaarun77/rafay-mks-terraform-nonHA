@@ -7,4 +7,3 @@ TF_VAR_user_ocid="your_user_ocid"
 TF_VAR_fingerprint="your_fingerprint"
 TF_VAR_private_key_path="/path/to/private/key.pem"
 TF_VAR_region="your_region"
-
