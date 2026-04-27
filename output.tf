@@ -10,3 +10,8 @@ output "mks_cluster_name" {
     value = rafay_mks_cluster.mks-cluster.metadata.name
   
 }
+
+output "kubeconfig_cluster" {
+  description = "kubeconfig_cluster"
+  value       = data.rafay_download_kubeconfig.kubeconfig_cluster.kubeconfig
+}

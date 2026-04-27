@@ -48,3 +48,9 @@ resource "rafay_mks_cluster" "mks-cluster" {
   }
 }
 
+# get kubeconfig for a cluster
+data "rafay_download_kubeconfig" "kubeconfig_cluster" {
+  cluster = "${var.prefix_name}-${local.random_name}"
+}
+
+
