@@ -15,3 +15,8 @@ output "kubeconfig_cluster" {
   description = "kubeconfig_cluster"
   value       = data.rafay_download_kubeconfig.kubeconfig_cluster.kubeconfig
 }
+
+output "start_oci_instance" {
+  description = "command to start the oci instance"
+  value       = "oci compute instance action --instance-id ${oci_core_instance.node1.id} --action START"
+}
