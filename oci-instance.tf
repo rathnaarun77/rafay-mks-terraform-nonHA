@@ -1,7 +1,7 @@
 data "oci_core_images" "ubuntu" {
   compartment_id           = var.compartment_id
-  operating_system         = "Canonical Ubuntu"
-  operating_system_version = "24.04"
+  operating_system         = var.operating_system
+  operating_system_version = var.operating_system_version
   shape = "VM.Standard3.Flex"
 
   sort_by    = "TIMECREATED"

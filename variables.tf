@@ -113,7 +113,13 @@ variable "service_subnet" {
 
 variable "operating_system" {
     description = "operating system for the node instance"
-    default = "Ubuntu24.04"
+    default = "Canonical Ubuntu"
+  
+}
+
+variable "operating_system_version" {
+    description = "operating system version"
+    default = "24.04"
   
 }
 variable "private_key" {
