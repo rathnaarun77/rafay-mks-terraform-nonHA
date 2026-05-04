@@ -2,12 +2,12 @@ resource "rafay_config_context" "rafay-authentication" {
   metadata {
     name        = rafay-authentication
     project     = var.project
-    description = "this config is used for rafay authentication"
+    description = "this config context is used for rafay authentication"
   }
   spec {
     envs {
       key       = "RCTL_API_KEY"
-      value     = "modified-value"
+      value     = var.rctlapikey
       options = {
         sensitive = true
         override = {
