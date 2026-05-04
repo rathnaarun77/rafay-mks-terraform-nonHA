@@ -13,6 +13,7 @@ variable "oci_api_key" {
   
 }
 variable "user_ocid" {}
-variable "tenancy_ocid" {}
+variable "tenancy_ocid" {
+  default = "ocid1.tenancy.oc1..aaaaaaaaaa3ghjcqbrbzmssbzhxzhxf24rpmuyxbaxwcj2axwoqkpd56ljkq"
+}
 variable "fingerprint" {}
-variable "rctl_api_secret" {}
