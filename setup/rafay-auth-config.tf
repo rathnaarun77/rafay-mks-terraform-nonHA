@@ -1,27 +1,32 @@
 resource "rafay_config_context" "rafay-authentication" {
   metadata {
-    name        = rafay-authentication
+    name        = "rafay-authentication"
     project     = var.project
     description = "this config context is used for rafay authentication"
   }
+
   spec {
     envs {
-      key       = "RCTL_API_KEY"
-      value     = var.rctlapikey
-      options = {
+      key   = "RCTL_API_KEY"
+      value = var.rctlapikey
+
+      options {
         sensitive = true
-        override = {
+
+        override {
           type = "allowed"
         }
       }
     }
+
     envs {
-      key       = "RCTL_REST_ENDPOINT"
-      value     = "console.rafay.dev"
+      key   = "RCTL_REST_ENDPOINT"
+      value = "console.rafay.dev"
     }
+
     envs {
-      key       = "RCTL_PROJECT"
-      value     = var.project
+      key   = "RCTL_PROJECT"
+      value = var.project
     }
-}
+  }
 }
