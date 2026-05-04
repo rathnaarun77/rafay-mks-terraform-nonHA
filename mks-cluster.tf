@@ -58,7 +58,7 @@ data "rafay_download_kubeconfig" "kubeconfig_cluster" {
   cluster = "${var.prefix_name}-${local.random_name}"
 
   depends_on = [
-    rafay_cluster.cluster
+    rafay_mks_cluster.mks-cluster
   ]
 }
 
