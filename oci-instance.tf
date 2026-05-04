@@ -1,18 +1,9 @@
-data "oci_core_images" "ubuntu" {
-  compartment_id           = var.compartment_id
-  operating_system         = "Canonical Ubuntu"
-  operating_system_version = "24.04"
-  shape = "VM.Standard3.Flex"
-
-  sort_by    = "TIMECREATED"
-  sort_order = "DESC"
-}
 resource "oci_core_instance" "node1" {
   availability_domain = var.availability_domain
   compartment_id      = var.compartment_id
   display_name        = "${var.prefix_name}-${local.random_name}-node1"
+  shape               = "VM.Standard3.Flex"
 
-  shape = "VM.Standard3.Flex"
   shape_config {
     ocpus         = ceil(var.vcpu / 2)
     memory_in_gbs = var.memory_in_gbs
@@ -25,8 +16,8 @@ resource "oci_core_instance" "node1" {
   }
 
   source_details {
-    source_type = "image"
-    source_id   = data.oci_core_images.ubuntu.images[0].id
+    source_type             = "image"
+    source_id               = data.oci_core_images.ubuntu.images[0].id
     boot_volume_size_in_gbs = 50
   }
 
@@ -36,18 +27,31 @@ resource "oci_core_instance" "node1" {
     user_data = base64encode(<<EOF
 #!/bin/bash
 
-# Flush iptables
 iptables -F
 iptables -t nat -F
 iptables -t mangle -F
 iptables -X
 
-# Remove iptables-persistent (Debian/Ubuntu)
 apt remove -yq iptables-persistent --purge || true
 
-# Flush again just in case
 iptables -F
 EOF
     )
-}
+  }
+  dynamic "launch_volume_attachments" {
+    for_each = var.block_vol_size > 0 ? [1] : []
+
+    content {
+      type = "iscsi"
+
+      display_name = "${var.prefix_name}-${local.random_name}-block"
+
+      launch_create_volume_details {
+        compartment_id       = var.compartment_id
+        display_name         = "${var.prefix_name}-${local.random_name}-block"
+        size_in_gbs          = var.block_vol_size
+        volume_creation_type = "empty"
+      }
+    }
+  }
 }

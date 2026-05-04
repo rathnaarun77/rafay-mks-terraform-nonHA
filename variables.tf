@@ -121,3 +121,8 @@ variable "private_key" {
   type        = string
   sensitive   = true
 }
+
+variable "block_vol_size" {
+    description = "size of the block volume to be attached to the OCI node, default is zero, means no disk will be attached"
+    default = 0
+}
