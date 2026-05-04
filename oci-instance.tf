@@ -52,7 +52,7 @@ EOF
     for_each = var.block_vol_size > 0 ? [1] : []
 
     content {
-      type = "iscsi"
+      type = "PARAVIRTUALIZED"
 
       display_name = "${var.prefix_name}-${local.random_name}-block"
 
