@@ -9,6 +9,7 @@ data "oci_core_images" "ubuntu" {
 }
 
 resource "oci_core_instance" "node1" {
+  preserve_data_volumes_created_at_launch = false
   availability_domain = var.availability_domain
   compartment_id      = var.compartment_id
   display_name        = "${var.prefix_name}-${local.random_name}-node1"
@@ -57,7 +58,6 @@ EOF
       display_name = "${var.prefix_name}-${local.random_name}-block"
 
       launch_create_volume_details {
-        preserve_data_volumes_created_at_launch = false
         compartment_id       = var.compartment_id
         display_name         = "${var.prefix_name}-${local.random_name}-block"
         size_in_gbs          = var.block_vol_size
