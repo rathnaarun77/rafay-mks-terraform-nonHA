@@ -116,6 +116,11 @@ variable "operating_system" {
     default = "Canonical Ubuntu"
   
 }
+variable "mks_operating_system" {
+    description = "operating system for the node instwnce in mks format"
+    default = "ubuntu"
+  
+}
 
 variable "operating_system_version" {
     description = "operating system version"

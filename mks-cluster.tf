@@ -36,7 +36,7 @@ resource "rafay_mks_cluster" "mks-cluster" {
         (oci_core_instance.node1.display_name) = {
           arch             = "amd64"
           hostname         = oci_core_instance.node1.display_name
-          operating_system = var.operating_system
+          operating_system = var.mks_operating_system
           private_ip       = oci_core_instance.node1.private_ip
 
           roles = concat(
