@@ -1,3 +1,13 @@
+data "oci_core_images" "ubuntu" {
+  compartment_id           = var.compartment_id
+  operating_system         = "Canonical Ubuntu"
+  operating_system_version = "24.04"
+  shape = "VM.Standard3.Flex"
+
+  sort_by    = "TIMECREATED"
+  sort_order = "DESC"
+}
+
 resource "oci_core_instance" "node1" {
   availability_domain = var.availability_domain
   compartment_id      = var.compartment_id
