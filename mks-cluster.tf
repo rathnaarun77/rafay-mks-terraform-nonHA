@@ -38,16 +38,20 @@ resource "rafay_mks_cluster" "mks-cluster" {
           hostname         = oci_core_instance.node1.display_name
           operating_system = var.operating_system
           private_ip       = oci_core_instance.node1.private_ip
-          roles            = ["ControlPlane", "Worker"]
+
+          roles = concat(
+            ["ControlPlane", "Worker"],
+            var.block_vol_size > 0 ? ["Storage"] : []
+          )
+
           ssh = {
             ip_address = oci_core_instance.node1.public_ip
           }
         }
       }
+        }
+      }
     }
-  }
-}
-
 # get kubeconfig for a cluster
 data "rafay_download_kubeconfig" "kubeconfig_cluster" {
   cluster = "${var.prefix_name}-${local.random_name}"
