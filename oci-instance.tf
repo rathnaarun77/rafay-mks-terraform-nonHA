@@ -60,7 +60,7 @@ EOF
         compartment_id       = var.compartment_id
         display_name         = "${var.prefix_name}-${local.random_name}-block"
         size_in_gbs          = var.block_vol_size
-        volume_creation_type = "empty"
+        volume_creation_type = "ATTRIBUTES"
       }
     }
   }
