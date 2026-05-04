@@ -118,7 +118,7 @@ variable "operating_system" {
 }
 variable "mks_operating_system" {
     description = "operating system for the node instwnce in mks format"
-    default = "ubuntu"
+    default = "Ubuntu24.04"
   
 }
 
