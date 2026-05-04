@@ -57,6 +57,7 @@ EOF
       display_name = "${var.prefix_name}-${local.random_name}-block"
 
       launch_create_volume_details {
+        preserve_data_volumes_created_at_launch = false
         compartment_id       = var.compartment_id
         display_name         = "${var.prefix_name}-${local.random_name}-block"
         size_in_gbs          = var.block_vol_size
