@@ -25,3 +25,4 @@ output "oci_instance_id" {
   description = "oci id of the instance"
   value       = "${oci_core_instance.node1.id}"
 }
+
