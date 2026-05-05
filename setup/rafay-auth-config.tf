@@ -1,5 +1,5 @@
 locals {
-  rafay_creds = jsondecode(file(var.provider_config_file))
+  rafay_creds = jsondecode(file(var.rafay_cli_config_file))
 }
 
 resource "rafay_config_context" "rafay-authentication" {

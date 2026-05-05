@@ -21,7 +21,7 @@ resource "rafay_config_context" "oci-authentication" {
   spec {
     files {
       name = "/.oci/oci_api_key.pem"
-      data = base64decode(var.oci_api_key)
+      data = file(var.oci_api_key_path)
       options  {
         sensitive = true
         override {
@@ -47,7 +47,7 @@ resource "rafay_config_context" "oci-authentication" {
         override {
           type  = "allowed"
         }
-        sensitive   = true
+        sensitive   = false
       }
     }
     variables {
@@ -58,7 +58,7 @@ resource "rafay_config_context" "oci-authentication" {
         override {
           type  = "allowed"
         }
-        sensitive   = true
+        sensitive   = false
       }
     }
     variables {
@@ -69,7 +69,7 @@ resource "rafay_config_context" "oci-authentication" {
         override {
           type  = "allowed"
         }
-        sensitive   = true
+        sensitive   = false
       }
     }
     variables {
@@ -80,7 +80,7 @@ resource "rafay_config_context" "oci-authentication" {
         override {
           type  = "allowed"
         }
-        sensitive   = true
+        sensitive   = false
       }
     }
     variables {
@@ -102,7 +102,7 @@ resource "rafay_config_context" "oci-authentication" {
         override {
           type  = "allowed"
         }
-        sensitive   = true
+        sensitive   = false
       }
     }
     variables {
@@ -113,7 +113,7 @@ resource "rafay_config_context" "oci-authentication" {
         override {
           type  = "allowed"
         }
-        sensitive   = true
+        sensitive   = false
       }
     }
 }

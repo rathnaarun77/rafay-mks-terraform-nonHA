@@ -16,6 +16,6 @@ terraform {
 }
 
 provider "rafay" {
-  provider_config_file = var.provider_config_file
+  provider_config_file = var.rafay_cli_config_file
 }
 
