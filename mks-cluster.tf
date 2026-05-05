@@ -55,6 +55,6 @@ resource "rafay_mks_cluster" "mks-cluster" {
 
 # get kubeconfig for a cluster
 data "rafay_download_kubeconfig" "kubeconfig_cluster" {
-  cluster = rafay_mks_cluster.mks-cluster.metadata[0].name
+  cluster = rafay_mks_cluster.mks-cluster.metadata.name
 }
 
