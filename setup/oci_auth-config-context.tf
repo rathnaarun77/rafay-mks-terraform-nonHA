@@ -42,7 +42,7 @@ resource "rafay_config_context" "oci-authentication" {
     variables {
       name       = "tenancy_ocid"
       value_type = "text"
-      value      = var.tenancy_ocid
+      value      = "${var.tenancy_ocid}"
       options {
         override {
           type  = "allowed"
@@ -53,7 +53,7 @@ resource "rafay_config_context" "oci-authentication" {
     variables {
       name       = "user_ocid"
       value_type = "text"
-      value      = var.user_ocid
+      value      = nonsensitive(var.user_ocid)
       options {
         override {
           type  = "allowed"
@@ -64,12 +64,12 @@ resource "rafay_config_context" "oci-authentication" {
     variables {
       name       = "fingerprint"
       value_type = "text"
-      value      = var.fingerprint
+      value      = nonsensitive(var.fingerprint)
       options {
         override {
           type  = "allowed"
         }
-        sensitive   = false
+        sensitive   = true
       }
     }
     variables {
@@ -97,7 +97,7 @@ resource "rafay_config_context" "oci-authentication" {
     variables {
       name       = "compartment_id"
       value_type = "text"
-      value      = var.tenancy_ocid
+      value      = nonsensitive(var.tenancy_ocid)
       options {
         override {
           type  = "allowed"

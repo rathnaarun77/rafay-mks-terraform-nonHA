@@ -5,24 +5,26 @@ resource "rafay_config_context" "ssh-keys" {
     description = "this config context is used for rafay authentication"
   }
   spec {
-    files {
-      name = "/.ssh/mks-key.pub"
-      data = nonsensitive(tls_private_key.ssh_key.public_key_pem)
-      options  {
-        sensitive = false
+    variables {
+      name       = "ssh_public_key"
+      value_type = "text"
+      value      = nonsensitive(tls_private_key.ssh_key.public_key_openssh)
+      options {
         override {
-          type = "allowed"
+          type  = "allowed"
         }
+        sensitive   = true
       }
     }
-    files {
-      name = "/.ssh/mks-key"
-      data = base64decode(local.private_key_b64)
-      options  {
-        sensitive = false
+    variables {
+      name       = "private_key"
+      value_type = "text"
+      value      = base64decode(local.private_key_b64)
+      options {
         override {
-          type = "allowed"
+          type  = "allowed"
         }
+        sensitive   = true
       }
     }
 }
