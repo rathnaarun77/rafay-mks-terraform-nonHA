@@ -19,7 +19,7 @@ resource "rafay_resource_template" "mks_minimal" {
 
     repository_options {
       name           = "mks-terraform-minimal"
-      branch         = "test"
+      branch         = "main"
       directory_path = "./"
     }
 

@@ -28,7 +28,7 @@ This repository contains a Terraform project that integrates with Rafay Environm
 ### Step 1: Clone Only the Setup Folder
 
 ```bash
-git clone --filter=blob:none --sparse -b test https://github.com/rathnaarun77/rafay-mks-terraform-nonHA.git tmp-repo && \
+git clone --filter=blob:none --sparse -b main https://github.com/rathnaarun77/rafay-mks-terraform-nonHA.git tmp-repo && \
 cd tmp-repo && \
 git sparse-checkout set setup && \
 mv setup ../ && \
