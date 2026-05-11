@@ -137,3 +137,19 @@ variable "block_vol_size" {
     description = "size of the block volume to be attached to the OCI node, default is zero, means no disk will be attached"
     default = 0
 }
+
+variable "cp_count" {
+    description = "number of controlplane nodes"
+    default = 1
+}
+
+variable "worker_count" {
+    description = "number of worker nodes"
+    default = 1
+}
+
+variable "dedicated_master" {
+    description = "dedicated master enabled or disabled"
+    type = bool
+    default = false
+}

@@ -1,19 +1,27 @@
+locals {
+  total_nodes = var.dedicated_master ? (var.cp_count + var.worker_count) : max(var.cp_count, var.worker_count)
+}
+
 data "oci_core_images" "ubuntu" {
   compartment_id           = var.compartment_id
   operating_system         = var.operating_system
   operating_system_version = var.operating_system_version
-  shape = "VM.Standard3.Flex"
+  shape                    = "VM.Standard3.Flex"
 
   sort_by    = "TIMECREATED"
   sort_order = "DESC"
 }
 
-resource "oci_core_instance" "node1" {
+resource "oci_core_instance" "nodes" {
+  count = local.total_nodes
+
   preserve_data_volumes_created_at_launch = false
-  availability_domain = var.availability_domain
-  compartment_id      = var.compartment_id
-  display_name        = "${var.prefix_name}-${local.random_name}-node1"
-  shape               = "VM.Standard3.Flex"
+  availability_domain                     = var.availability_domain
+  compartment_id                          = var.compartment_id
+
+  display_name = "${var.prefix_name}-${local.random_name}-node${count.index + 1}"
+
+  shape = "VM.Standard3.Flex"
 
   shape_config {
     ocpus         = ceil(var.vcpu / 2)
@@ -23,7 +31,8 @@ resource "oci_core_instance" "node1" {
   create_vnic_details {
     subnet_id        = var.subnet_id
     assign_public_ip = true
-    hostname_label   = "${var.prefix_name}-${local.random_name}-node1"
+
+    hostname_label = "${var.prefix_name}-${local.random_name}-node${count.index + 1}"
   }
 
   source_details {
@@ -49,17 +58,18 @@ iptables -F
 EOF
     )
   }
+
   dynamic "launch_volume_attachments" {
     for_each = var.block_vol_size > 0 ? [1] : []
 
     content {
       type = "PARAVIRTUALIZED"
 
-      display_name = "${var.prefix_name}-${local.random_name}-block"
+      display_name = "${var.prefix_name}-${local.random_name}-block-${count.index + 1}"
 
       launch_create_volume_details {
         compartment_id       = var.compartment_id
-        display_name         = "${var.prefix_name}-${local.random_name}-block"
+        display_name         = "${var.prefix_name}-${local.random_name}-block-${count.index + 1}"
         size_in_gbs          = var.block_vol_size
         volume_creation_type = "ATTRIBUTES"
       }
