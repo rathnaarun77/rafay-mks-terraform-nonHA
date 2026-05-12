@@ -23,6 +23,7 @@ resource "rafay_mks_cluster" "mks-cluster" {
       kubernetes_version = var.k8s_ver
       installer_ttl      = 365
       platform_version   = var.platform_ver
+      high_availability = var.dedicated_master && var.cp_count > 1
 
       network = {
         cni = {
