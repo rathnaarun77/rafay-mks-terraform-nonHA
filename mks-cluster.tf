@@ -18,6 +18,7 @@ resource "rafay_mks_cluster" "mks-cluster" {
     }
 
     config = {
+      dedicated_control_plane = var.dedicated_master
       auto_approve_nodes = true
       kubernetes_version = var.k8s_ver
       installer_ttl      = 365
